@@ -1,5 +1,6 @@
 import { existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import type { Plugin } from "vite";
 import { defineConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
@@ -10,8 +11,11 @@ import { nitro } from "nitro/vite";
 const ROOT = process.cwd();
 
 async function optionalMod<T>(rel: string): Promise<T | null> {
-  if (!existsSync(join(ROOT, rel))) return null;
-  return (await import(`./${rel}`)) as T;
+  const abs = join(ROOT, rel);
+  if (!existsSync(abs)) return null;
+  // Absolute file URL so Vite's config bundler does not rewrite the path
+  // into node_modules/.vite-temp (which breaks optional sandbox plugins).
+  return (await import(pathToFileURL(abs).href)) as T;
 }
 
 const grokPwaMod = await optionalMod<{ grokPwaPlugin: () => Plugin }>(
