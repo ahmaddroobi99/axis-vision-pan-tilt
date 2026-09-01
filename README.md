@@ -2,6 +2,8 @@
 
 **Functional engineering MVP.** Host vision in Python / TypeScript, UART protocol, STM32 STEP/DIR firmware, TMC stepper drive.
 
+[Live console](https://axis-vision-pan-tilt.netlify.app) · [GitHub](https://github.com/ahmaddroobi99/axis-vision-pan-tilt)
+
 [![status](https://img.shields.io/badge/status-software%20verified-8fa38a?style=flat-square)](docs/STATUS.md)
 [![hardware](https://img.shields.io/badge/hardware-not%20bench%20tested-c4a574?style=flat-square)](docs/STATUS.md)
 [![license](https://img.shields.io/badge/license-MIT-c8cdc4?style=flat-square)](LICENSE)
@@ -55,6 +57,8 @@ Full drawing set: [docs/diagrams.md](docs/diagrams.md) · [docs/architecture.md]
 ---
 
 ## Live console
+
+Open the [interactive console](https://axis-vision-pan-tilt.netlify.app). Patrol / Figure-8 / Drag / Webcam. Tune gains on **Control**. Parse packets on **UART**.
 
 <p align="center">
   <img src="docs/media/track-console.gif" alt="Full AXIS engineering console" width="920" />
