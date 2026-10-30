@@ -322,11 +322,15 @@ axis-vision-pan-tilt/
 ### Interactive console (this app)
 
 ```bash
-npm install
-npm run dev
+npm ci
+npx vite dev --port 8080
+npx vite build
+npm run lint
 ```
 
-Open the preview. Use Patrol / Figure-8 / Drag. Tune gains on **Control**. Parse packets on **UART**.
+`npm run dev`, `npm run check:auth` and `npm test`'s `scripts/` half rely on app-builder helper scripts that are gitignored here, so on a fresh clone use `npx vite dev` directly. `npm run typecheck` fails on a fresh clone for the same reason (`src/lib/auth/client.ts`, `src/lib/db.ts`), and also on the better-auth 1.7 API change in `src/lib/auth/client.ts` / `popup.server.ts`.
+
+Open http://localhost:8080. Use Patrol / Figure-8 / Drag. Tune gains on **Control**. Parse packets on **UART**.
 
 ### Python host (no GPU required)
 
@@ -340,6 +344,8 @@ python3 simulation/tracker_sim.py
 python3 tools/packet_test.py
 python3 -m pytest -q
 ```
+
+`host.main` opens an OpenCV window, so it needs a desktop session. The other commands run headless.
 
 Haar cascade is OpenCV’s built-in frontal-face detector. YOLO is optional and not required.
 
