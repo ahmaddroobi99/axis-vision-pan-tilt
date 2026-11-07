@@ -103,6 +103,7 @@ function stripFrame(raw: string): { payload: string; cs: string } | null {
 }
 
 export function parsePacket(raw: string): ParseResult {
+  // eslint-disable-next-line no-control-regex -- strip leading NUL bytes from the UART stream
   const trimmed = raw.replace(/^\u0000+/, "");
   const framed = stripFrame(trimmed);
   if (!framed) {
